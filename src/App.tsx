@@ -1,7 +1,12 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Users } from "./Users";
+
+const queryClient = new QueryClient()
+
 export function App() {
   return (
-    <>
-      <h1>Hello, World!</h1>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <Users />
+    </QueryClientProvider>
   )
 }
