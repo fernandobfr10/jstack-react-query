@@ -7,11 +7,17 @@ import { sleep } from "./utils/sleep"
 // isPending (boolean) => Será true quando não houver nenhum valor no cache
 // isFetching (boolean) => Será true sempre que a query function estiver executando, seja na primeira execução ou nas subsequentes
 
+// staleTime (number) => Define o tempo em milissegundos que a query será considerada "stale" (desatualizada) e será refetchada
+// gcTime (number) => Define o tempo em milissegundos que a query será considerada "garbage" (lixo) e será removida do cache
+
+// refetchOnWindowFocus (boolean) => Se true, a query será automaticamente refetchada quando a janela do navegador ganhar foco
+// refetchOnInterval (number) => Se definido, a query será automaticamente refetchada a cada X milissegundos
+
 export function Users() {
   const {data: users, isLoading: isUsersInitialLoading, isFetching: isUsersFetching, refetch: refetchUsers} = useQuery({
     queryKey: ['users'],
     enabled: false,
-    staleTime: 3000,
+    refetchOnWindowFocus: false,
     queryFn: async (): Promise<IUser[]> => {
       await sleep()
       const response = await fetch('http://localhost:3000/users')
