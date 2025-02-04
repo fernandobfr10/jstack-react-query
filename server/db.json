@@ -9,36 +9,6 @@
       "id": "2",
       "name": "Jane Doe",
       "email": "jane@doe.com"
-    },
-    {
-      "id": "3",
-      "name": "Rick Doe",
-      "email": "rick@doe.com"
-    },
-    {
-      "id": "f0e7",
-      "name": "Fernando",
-      "email": "teste@teste.com"
-    },
-    {
-      "id": "ef40",
-      "name": "Alice",
-      "email": "alicinha@email.com"
-    },
-    {
-      "id": "6983",
-      "name": "Manoela",
-      "email": "manoela@email.com"
-    },
-    {
-      "id": "dbcb",
-      "name": "Juliana",
-      "email": "juliana@email.com"
-    },
-    {
-      "id": "f112",
-      "name": "Testando",
-      "email": "Testando@email.com"
     }
   ]
 }

@@ -1,44 +1,11 @@
-import { useMutation } from "@tanstack/react-query"
+import { useCreateUser } from "./hooks/useCreateUser"
 import { useUsers } from "./hooks/useUsers"
-import { IUser } from "./types/types"
-import { sleep } from "./utils/sleep"
 
 export function Users() {
 
   const { data: users, isLoading: isUsersInitialLoading, isFetching: isUsersFetching, refetch: refetchUsers, error: errorUsers } = useUsers()
 
-  const { mutate, isPending, data } = useMutation({
-    mutationFn: async ({ name, email }: { name: string, email: string }): Promise<IUser> => {
-      await sleep()
-
-      // throw new Error('Erro ao cadastrar usuário')
-
-      const response = fetch('http://localhost:3000/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name, email })
-      })
-
-      return (await response).json()
-    },
-    onError: (error, variables) => {
-      console.log({ error, variables })
-    },
-    onSuccess: (data, variables) => {
-      console.log('onSuccess:', { data, variables })
-    },
-    onSettled: (data, error) => {
-      if(data) {
-        console.log('onSettled:', data)
-      }
-
-      if(error) {
-        console.log('onSettled:', error)
-      }
-    }
-  })
+  const { mutate, isPending, data } = useCreateUser()
 
   console.log({ data }) // Dados da resposta da mutation
 
