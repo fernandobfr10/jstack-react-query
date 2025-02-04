@@ -5,7 +5,16 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import { Posts } from './Posts';
 import { Users } from "./Users";
 
-const queryClient = new QueryClient()
+// O defaultOptions é um objeto que define as opções padrão para todas as queries e as mutations.
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  },
+})
 
 export function App() {
   return (
