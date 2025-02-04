@@ -27,7 +27,7 @@ export function Users() {
     refetchOnWindowFocus: false,
     queryFn: async (): Promise<IUser[]> => {
       // throw new Error('Erro ao buscar usuários')
-      await sleep()
+      await sleep(1000)
       const response = await fetch('http://localhost:3000/users')
       return response.json()
     },
