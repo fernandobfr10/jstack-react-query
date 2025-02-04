@@ -10,6 +10,9 @@ export function Users() {
   const { mutate, isPending, data } = useMutation({
     mutationFn: async ({ name, email }: { name: string, email: string }): Promise<IUser> => {
       await sleep()
+
+      // throw new Error('Erro ao cadastrar usuário')
+
       const response = fetch('http://localhost:3000/users', {
         method: 'POST',
         headers: {
@@ -19,10 +22,25 @@ export function Users() {
       })
 
       return (await response).json()
+    },
+    onError: (error, variables) => {
+      console.log({ error, variables })
+    },
+    onSuccess: (data, variables) => {
+      console.log('onSuccess:', { data, variables })
+    },
+    onSettled: (data, error) => {
+      if(data) {
+        console.log('onSettled:', data)
+      }
+
+      if(error) {
+        console.log('onSettled:', error)
+      }
     }
   })
 
-  console.log({ data })
+  console.log({ data }) // Dados da resposta da mutation
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
