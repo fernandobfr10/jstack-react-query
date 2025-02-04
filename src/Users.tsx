@@ -1,5 +1,3 @@
-
-
 import { useUsers } from "./hooks/useUsers"
 
 export function Users() {
