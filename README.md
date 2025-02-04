@@ -1,5 +1,7 @@
 # Anotações
 
+## Queries => Buscar dados (GET)
+
 ### **isLoading (boolean) =>** Será true quando a query function estiver executando na primeira requisição, deveria ser isInitialLoading
 ### **isPending (boolean) =>** Será true quando não houver nenhum valor no cache
 ### **isFetching (boolean) =>** Será true sempre que a query function estiver executando, seja na primeira execução ou nas subsequentes
@@ -15,3 +17,6 @@
 
 ### **retry (number | boolean) =>** Define a quantidade de vezes que a query será retentada em caso de erro, ou se true, a query será retentada indefinidamente (default 3)
 ### **retryDelay (number) =>** Define o tempo em milissegundos que a query será retentada em caso de erro
+
+## Mutations => Modificar dados (POST, PUT, PATCH, DELETE)
+

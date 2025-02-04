@@ -1,10 +1,54 @@
+import { useMutation } from "@tanstack/react-query"
 import { useUsers } from "./hooks/useUsers"
 
 export function Users() {
+
   const { data: users, isLoading: isUsersInitialLoading, isFetching: isUsersFetching, refetch: refetchUsers, error: errorUsers } = useUsers()
+
+  const { mutate } = useMutation({
+    mutationFn: async (variables: { name: string, email: string }) => {
+      console.log({ variables })
+      console.log('mutationFn() executou')
+    }
+  })
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const elements = event.currentTarget.elements as typeof event.currentTarget.elements & {
+      name: HTMLInputElement
+      email: HTMLInputElement
+    }
+
+    mutate({
+      name: elements.name.value,
+      email: elements.email.value
+    })
+  }
 
   return (
     <div className="p-4">
+      <div className="mb-10">
+        <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
+          <input
+            className="border border-white p-1 rounded-md text-zinc-900 bg-white outline-none"
+            placeholder="Nome"
+            name="name"
+
+          />
+          <input
+            className="border border-white p-1 rounded-md text-zinc-900 bg-white outline-none"
+            placeholder="E-mail"
+            name="email"
+          />
+
+          <button className="bg-blue-400 py-2 text-zinc-950 rounded-md">
+            Cadastrar
+          </button>
+        </form>
+
+      </div>
+
       <button
         type="button"
         className="bg-white text-black px-4 py-2 rounded-lg cursor-pointer"
